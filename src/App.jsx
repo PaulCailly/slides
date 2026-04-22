@@ -8,16 +8,16 @@ import { slidesRaw } from './slides-data';
 const sections = [
   { from: 1, to: 3, name: 'Intro' },
   { from: 4, to: 8, name: 'Mental Model' },
-  { from: 9, to: 15, name: 'Setup & Hygiene' },
-  { from: 16, to: 24, name: 'Context Engineering' },
-  { from: 25, to: 31, name: 'Skills' },
-  { from: 32, to: 38, name: 'MCP' },
-  { from: 39, to: 46, name: 'Hooks' },
-  { from: 47, to: 53, name: 'Sub-agents' },
-  { from: 54, to: 61, name: 'Methodology' },
-  { from: 62, to: 64, name: 'Beyond' },
-  { from: 65, to: 65, name: 'Kahoot' },
-  { from: 66, to: 70, name: 'Wrap-up' },
+  { from: 9, to: 13, name: 'Setup & Hygiene' },
+  { from: 14, to: 23, name: 'Context Engineering' },
+  { from: 24, to: 30, name: 'Skills' },
+  { from: 31, to: 37, name: 'MCP' },
+  { from: 38, to: 45, name: 'Hooks' },
+  { from: 46, to: 52, name: 'Sub-agents' },
+  { from: 53, to: 60, name: 'Methodology' },
+  { from: 61, to: 63, name: 'Beyond' },
+  { from: 64, to: 64, name: 'Kahoot' },
+  { from: 65, to: 69, name: 'Wrap-up' },
 ];
 
 function getSectionName(n) {

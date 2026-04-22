@@ -725,13 +725,6 @@
     font-style: italic;
     margin-bottom: 28px;
   }
-  .slide.question h2::before {
-    content: '?';
-    color: var(--accent);
-    margin-right: 16px;
-    font-style: normal;
-    font-weight: 400;
-  }
 
   /* Utility */
   .mt-0 { margin-top: 0 !important; }
