@@ -32,16 +32,17 @@ mermaid.initialize({
 const sections = [
   { from: 1, to: 3, name: 'Intro' },
   { from: 4, to: 8, name: 'Mental Model' },
-  { from: 9, to: 13, name: 'Setup & Hygiene' },
-  { from: 14, to: 22, name: 'Context Engineering' },
-  { from: 23, to: 28, name: 'Skills' },
-  { from: 29, to: 34, name: 'MCP' },
-  { from: 35, to: 42, name: 'Hooks' },
-  { from: 43, to: 49, name: 'Sub-agents' },
-  { from: 50, to: 55, name: 'Methodology' },
-  { from: 56, to: 58, name: 'Beyond' },
-  { from: 59, to: 59, name: 'Kahoot' },
-  { from: 60, to: 65, name: 'Wrap-up' },
+  { from: 9, to: 14, name: 'Setup & Hygiene' },
+  { from: 15, to: 24, name: 'Context Engineering' },
+  { from: 25, to: 31, name: 'Skills' },
+  { from: 32, to: 38, name: 'MCP' },
+  { from: 39, to: 40, name: 'Break' },
+  { from: 41, to: 48, name: 'Hooks' },
+  { from: 49, to: 56, name: 'Sub-agents' },
+  { from: 57, to: 63, name: 'Methodology' },
+  { from: 64, to: 66, name: 'Beyond' },
+  { from: 67, to: 67, name: 'Kahoot' },
+  { from: 68, to: 74, name: 'Wrap-up' },
 ];
 
 function getSectionName(n) {
