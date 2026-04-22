@@ -33,15 +33,15 @@ const sections = [
   { from: 1, to: 3, name: 'Intro' },
   { from: 4, to: 8, name: 'Mental Model' },
   { from: 9, to: 13, name: 'Setup & Hygiene' },
-  { from: 14, to: 23, name: 'Context Engineering' },
-  { from: 24, to: 30, name: 'Skills' },
-  { from: 31, to: 37, name: 'MCP' },
-  { from: 38, to: 45, name: 'Hooks' },
-  { from: 46, to: 52, name: 'Sub-agents' },
-  { from: 53, to: 60, name: 'Methodology' },
-  { from: 61, to: 63, name: 'Beyond' },
-  { from: 64, to: 64, name: 'Kahoot' },
-  { from: 65, to: 69, name: 'Wrap-up' },
+  { from: 14, to: 22, name: 'Context Engineering' },
+  { from: 23, to: 29, name: 'Skills' },
+  { from: 30, to: 35, name: 'MCP' },
+  { from: 36, to: 43, name: 'Hooks' },
+  { from: 44, to: 50, name: 'Sub-agents' },
+  { from: 51, to: 57, name: 'Methodology' },
+  { from: 58, to: 60, name: 'Beyond' },
+  { from: 61, to: 61, name: 'Kahoot' },
+  { from: 62, to: 67, name: 'Wrap-up' },
 ];
 
 function getSectionName(n) {
@@ -163,7 +163,7 @@ export default function App() {
 
       <div className="deck">
         <div className="top-bar">
-          <div className="brand">Claude Code Advanced &middot; Deezer AI CoP</div>
+          <div className="brand">Claude Code Advanced</div>
           <div className="section">{getSectionName(slide.number).toUpperCase()}</div>
           <div className="counter">
             <span className="n">{String(slide.number).padStart(2, '0')}</span>{' '}
