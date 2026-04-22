@@ -41,8 +41,9 @@ const sections = [
   { from: 49, to: 56, name: 'Sub-agents' },
   { from: 57, to: 63, name: 'Methodology' },
   { from: 64, to: 66, name: 'Beyond' },
-  { from: 67, to: 67, name: 'Kahoot' },
-  { from: 68, to: 74, name: 'Wrap-up' },
+  { from: 67, to: 68, name: 'Demo' },
+  { from: 69, to: 69, name: 'Kahoot' },
+  { from: 70, to: 76, name: 'Wrap-up' },
 ];
 
 function getSectionName(n) {
