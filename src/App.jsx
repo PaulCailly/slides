@@ -1,9 +1,33 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
+import mermaid from 'mermaid';
 import 'highlight.js/styles/github-dark.css';
 import './deck.css';
 import { slidesRaw } from './slides-data';
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'dark',
+  themeVariables: {
+    darkMode: true,
+    background: '#141414',
+    primaryColor: '#1e1e1e',
+    primaryTextColor: '#efefef',
+    primaryBorderColor: '#d97757',
+    lineColor: '#888',
+    secondaryColor: '#242424',
+    tertiaryColor: '#1a1a1a',
+    mainBkg: '#1e1e1e',
+    nodeBorder: '#d97757',
+    clusterBkg: '#141414',
+    clusterBorder: '#333',
+    edgeLabelBackground: '#141414',
+    fontFamily: 'JetBrains Mono, monospace',
+    fontSize: '14px',
+  },
+  flowchart: { curve: 'basis', padding: 20, useMaxWidth: true },
+});
 
 const sections = [
   { from: 1, to: 3, name: 'Intro' },
@@ -75,16 +99,46 @@ export default function App() {
     return () => document.removeEventListener('keydown', onKey);
   }, [next, prev, total]);
 
-  // Render slide content with marked + highlight.js
+  // Render slide content with marked + highlight.js + mermaid
   useEffect(() => {
     if (!contentRef.current) return;
-    const html = marked.parse(slide.body);
+    let html = marked.parse(slide.body);
+
+    // Convert mermaid code blocks to pending containers
+    html = html.replace(
+      /<pre><code class="language-mermaid">([\s\S]*?)<\/code><\/pre>/g,
+      (_, code) => {
+        const decoded = code
+          .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&').replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'");
+        return `<div class="mermaid-pending">${decoded}</div>`;
+      }
+    );
+
     contentRef.current.innerHTML = html;
 
     // Highlight code blocks
     contentRef.current.querySelectorAll('pre code').forEach((block) => {
       if (!block.classList.contains('hljs')) {
         try { hljs.highlightElement(block); } catch (e) { /* skip */ }
+      }
+    });
+
+    // Render mermaid diagrams
+    const mermaidEls = contentRef.current.querySelectorAll('.mermaid-pending');
+    let counter = Date.now();
+    mermaidEls.forEach(async (el) => {
+      const graph = el.textContent;
+      const id = `mermaid-${++counter}`;
+      el.classList.remove('mermaid-pending');
+      el.classList.add('mermaid');
+      el.innerHTML = '';
+      try {
+        const { svg } = await mermaid.render(id, graph);
+        el.innerHTML = svg;
+      } catch (err) {
+        el.textContent = graph;
       }
     });
   }, [slide]);
