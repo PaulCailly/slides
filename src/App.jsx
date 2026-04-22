@@ -38,10 +38,10 @@ const sections = [
   { from: 29, to: 34, name: 'MCP' },
   { from: 35, to: 42, name: 'Hooks' },
   { from: 43, to: 49, name: 'Sub-agents' },
-  { from: 50, to: 56, name: 'Methodology' },
-  { from: 57, to: 59, name: 'Beyond' },
-  { from: 60, to: 60, name: 'Kahoot' },
-  { from: 61, to: 66, name: 'Wrap-up' },
+  { from: 50, to: 55, name: 'Methodology' },
+  { from: 56, to: 58, name: 'Beyond' },
+  { from: 59, to: 59, name: 'Kahoot' },
+  { from: 60, to: 65, name: 'Wrap-up' },
 ];
 
 function getSectionName(n) {
