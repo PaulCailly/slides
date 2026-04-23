@@ -123,7 +123,7 @@ export default function App() {
     // Highlight code blocks
     contentRef.current.querySelectorAll('pre code').forEach((block) => {
       if (!block.classList.contains('hljs')) {
-        try { hljs.highlightElement(block); } catch (e) { /* skip */ }
+        try { hljs.highlightElement(block); } catch { /* skip */ }
       }
     });
 
@@ -139,7 +139,7 @@ export default function App() {
       try {
         const { svg } = await mermaid.render(id, graph);
         el.innerHTML = svg;
-      } catch (err) {
+      } catch {
         el.textContent = graph;
       }
     });

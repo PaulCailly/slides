@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_comment": "Personal hooks — copy this file to settings.local.json (untracked) and edit. These are per-developer, not shared with the team. The shared settings.json already handles lint/build verification; this file is for your personal preferences.",
+
+  "hooks": {
+    "Stop": [
+      {
+        "_note": "Before Claude stops, ask the human whether to commit or keep iterating. This is the 'keep human in loop' pattern from slide 47 — Stop + AskUserQuestion.",
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Using AskUserQuestion, ask the human: 'Stop hook green. Commit now?' with options [\"Commit\", \"Keep iterating\", \"Stop without committing\"]. If they pick Commit, run the git-commit-helper skill. If Keep iterating, stay active and wait. If Stop without committing, exit cleanly.",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+
+    "SessionStart": [
+      {
+        "_note": "On session start, preload the architecture diagrams as context. The workshop teaches this gives ~3-6x token efficiency vs Claude re-deriving the structure each time.",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat $CLAUDE_PROJECT_DIR/.claude/memory/diagrams/*.md"
+          }
+        ]
+      }
+    ],
+
+    "UserPromptSubmit": [
+      {
+        "_note": "Personal nudge: if the user's prompt looks like they're asking to edit slides-data.js directly, remind them the slide-explorer sub-agent is cheaper. Comment out if you find it noisy.",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.prompt // empty' | grep -qiE 'slides?-data|add (a )?slide|new slide' && echo 'Tip: /new-slide or the slide-explorer sub-agent will keep main context lean.' || true"
+          }
+        ]
+      }
+    ]
+  }
+}
